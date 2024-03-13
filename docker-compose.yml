@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  booking:
+    build:
+      context: .
+      dockerfile: ./apps/booking/Dockerfile
+      target: development
+    command: npm run start:dev booking
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+      # - /usr/src/app/node_modules
+    env_file:
+      - ./apps/booking/.env
+  auth:
+    build:
+      context: .
+      dockerfile: ./apps/auth/Dockerfile
+      target: development
+    command: npm run start:dev auth
+    ports:
+      - "3001:3001"
+    volumes:
+      - .:/usr/src/app
+      # - /usr/src/app/node_modules
+    env_file:
+      - ./apps/auth/.env
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+volumes:
+  mongo-data: {}
