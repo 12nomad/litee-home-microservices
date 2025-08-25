@@ -1,6 +1,6 @@
 # ✈️ Litee Home
 
-Hotel booking application
+Hotel booking application with a microservice architecture
 
 ## 🚀 Tech Stack
 
